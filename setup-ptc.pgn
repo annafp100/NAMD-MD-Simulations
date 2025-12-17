@@ -1,0 +1,20 @@
+package require psfgen
+package require solvate
+package require autoionize
+set CHARMM_HOME /Users/annafraser-philbin/WORK/CHARMM/toppar
+topology $CHARMM_HOME/top_all36_prot.rtf
+topology $CHARMM_HOME/top_all36_lipid.rtf
+pdbalias residue HIS HSE
+pdbalias atom ILE CD1 CD
+segment A {pdb ../VH12.pdb}
+segment B {pdb ../JK2_PRT.pdb}
+segment C {pdb ../../ptc.pdb}
+coordpdb ../VH12.pdb A
+coordpdb ../JK2_PRT.pdb  B
+coordpdb ../../ptc.pdb  C
+guesscoord
+writepdb ready.pdb
+writepsf ready.psf
+solvate ready.psf ready.pdb -t 15 -o solvated
+autoionize -psf solvated.psf -pdb solvated.pdb -sc 0.15 -o ionized
+exit
