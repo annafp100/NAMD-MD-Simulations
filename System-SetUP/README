@@ -1,0 +1,3 @@
+Use these PDB files with the setup.pgn to create PSF structure files.
+Adjust the setup file to match the chain names.
+Run with VMD, using 'vmd -dispdev text -e setup.pgn' in the command line.
